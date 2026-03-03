@@ -1,0 +1,24 @@
+<script>
+  async function loadBotInfo() {
+    const apiUrl = "http://185.218.137.132:8080/api/info"; // или https://твой-домен/api/info
+
+    try {
+      const resp = await fetch(apiUrl);
+      const data = await resp.json();
+
+      document.getElementById("creator-id").textContent = data.creator_id;
+      document.getElementById("ksusha-id").textContent = data.ksusha_id;
+    } catch (e) {
+      console.error(e);
+      document.getElementById("status").textContent = "Не удалось загрузить данные из бота";
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", loadBotInfo);
+</script>
+
+<div id="status">Загружаю данные из бота…</div>
+<div>
+  <p>Creator ID: <span id="creator-id">-</span></p>
+  <p>Ksusha ID: <span id="ksusha-id">-</span></p>
+</div>
